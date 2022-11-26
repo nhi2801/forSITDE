@@ -99,7 +99,7 @@ function changeQuizName(params) {
 
 const quizName = document.querySelector('.quiz-name');
 quizName.addEventListener('click', () => {
-    inputText('text', 'Nhập tên quiz', 'Nhập tên quiz của bạn vào đây...', changeQuizName);
+    inputText('text', 'Nhập tên quiz', 'Nhập tên quiz của bạn vào đây...', 'LOL', changeQuizName);
 })
 
 
