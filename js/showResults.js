@@ -1,4 +1,4 @@
-import { quizData } from "./createTest.js";
+import { quizData } from "./test.js";
 
 function showResults() {
     let showAnswersBtn = document.querySelector('.show-answers-btn');

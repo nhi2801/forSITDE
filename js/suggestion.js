@@ -1,5 +1,5 @@
 import { URL_add_parameter } from "../components/url_add_parameter.js";
-import { quizData, renderQuiz } from "./createTest.js";
+import { quizData, renderQuiz } from "./test.js";
 
 function renderSuggestion() {
     const quizItemList = document.querySelectorAll('.quiz-item');

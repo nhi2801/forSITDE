@@ -19,23 +19,23 @@ export class NavigationList {
         this.$explore = document.createElement('li');
         this.$explore.id = 'explore';
         this.$explore.innerHTML = `<i aria-hidden="true" class="fas fa-map-marked-alt"></i><span
-        role="link" tabindex="0">Khám phá</span>`;
-        this.$explore.addEventListener('click', () => { location.href = './main.html' })
+        role="link" tabindex="0">Quản lý người dùng</span>`;
+        this.$explore.addEventListener('click', () => { location.href = './adminUser.html' })
 
         this.$myQuizzes = document.createElement('li');
         this.$myQuizzes.id = 'my-quizzes';
-        this.$myQuizzes.innerHTML = `<i class="fas fa-book-reader"></i><span role="link" tabindex="0">Bộ sưu tập</span>`;
+        this.$myQuizzes.innerHTML = `<i class="fas fa-book-reader"></i><span role="link" tabindex="0">Quản lý bài thi</span>`;
         this.$myQuizzes.addEventListener('click', () => { location.href = './myCollections.html' })
 
         this.$profile = document.createElement('li');
         this.$profile.id = 'profile';
         this.$profile.innerHTML = `<i class="fas fa-user"></i><span role="link"
-        tabindex="0">Thông tin cá nhân</span>`;
+        tabindex="0">Quản lý tài liệu</span>`;
 
         this.$classes = document.createElement('li');
         this.$classes.id = 'leaderboard';
         this.$classes.innerHTML = `<i class="fas fa-university"></i><span role="link"
-        tabindex="0">Bảng xếp hạng</span>`;
+        tabindex="0">Thông tin cá nhân</span>`;
         this.$classes.addEventListener('click', () => { location.href = './leaderboard.html?id=html' })
 
         this.$divider = document.createElement('li');
@@ -44,7 +44,7 @@ export class NavigationList {
         this.$theory = document.createElement('li');
         this.$theory.id = 'theory';
         this.$theory.innerHTML = `<i class="fas fa-person-booth"></i><span role="link" tabindex="0"
-        aria-hidden="false">Quản lý Tài liệu</span>`;
+        aria-hidden="false">Bảng xếp hạng</span>`;
         this.$theory.addEventListener('click', () => { location.href = './listTheory.html?id=html' })
 
         this.$about = document.createElement('li');
