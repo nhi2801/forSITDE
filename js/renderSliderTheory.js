@@ -46,10 +46,10 @@ async function name() {
 
     // Phan loai slider
     data.forEach((element) => {
-      if (element.category == "all") {
+      if (element.category == "hot") {
         basicArray.push(element);
       } 
-      if (element.category == "hot") {
+      if (element.category == "all") {
         otherArray.push(element);
       // if (data[element][0].infor.$category == "basic") {
       //   basicArray.push(element);
