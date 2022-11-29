@@ -4,7 +4,7 @@ const theory = document.querySelector(".ta-content");
 const data = {
     "heading" : "MỘT SỐ KIẾN THỨC CƠ BẢN VỀ HTML",
     "desc" : "Đối với những bạn mới đặt chân vào con đường \"lập trình web\" thì HTML sẽ là ngôn ngữ đầu tiên mà các bạn cần phải học, và đây cũng chính là bài đầu tiên trong loạt tài liệu học HTML. Cùng tìm hiểu một cách tổng quan về ngôn ngữ này nhé.",
-    "image" : "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220714111443/HTML-Introduction.jpg",
+    "imageURL" : "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220714111443/HTML-Introduction.jpg",
     "item" : [
         {
             "header" : "1. HTML là gì?",
@@ -61,7 +61,7 @@ async function renderTheory(data){
     //render heading và desc
     theory.innerHTML = `<div class="ta-content">
                 <div class="img-tip">
-                    <img src=${data.image}>
+                    <img src=${data.imageURL}>
                 </div>
                 <h3 class="ta-content-heading"> 
                     ${data.theoryTitle.toUpperCase()}
