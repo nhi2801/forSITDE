@@ -32,7 +32,7 @@ function renderQuiz(quizId, promise) {
                         console.log(doc.data().email);
                         quizData[quizId] = doc.data()[quizId];
                         quizData[quizId].questions = doc.data()[quizId];
-                        quizData[quizId].image = doc.data()[quizId][0].image;
+                        quizData[quizId].image = doc.data()[quizId][0].imageURL;
                         quizData[quizId].questionTitle = doc.data()[quizId][0].questionTitle
                         quizData.displayName = doc.data().email;
                     };
