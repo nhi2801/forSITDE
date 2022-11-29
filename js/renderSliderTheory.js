@@ -77,7 +77,7 @@ async function name() {
       //   data[`${Object.keys(data)[index]}`].questions.length + " câu hỏi";
 
       // Render link hinh anh
-      cardImage[index].src = data[index].image;
+      cardImage[index].src = data[index].imageURL;
       // cardImage[index].src = data[`${Object.keys(data)[index]}`][0].infor.$image;
 
       const listName = theories[0];
