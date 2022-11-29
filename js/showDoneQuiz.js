@@ -2,6 +2,7 @@ import { ViewItem } from "../components/savedItem.js";
 
 let resultList = document.querySelector('.search-results-list');
 let userObject = JSON.parse(localStorage.getItem('tempUserInfo'));
+console.log(userObject.email);
 
 var docRef = db.collection("userQuizInfo").doc(userObject.email);
 
@@ -10,14 +11,22 @@ function renderList(category) {
         .then((doc) => {
             if (doc.exists) {
                 let savedQuizArray = doc.data()[category];
-                console.log(doc.data());
+                console.log(savedQuizArray);
                 resultList.innerHTML = '';
                 savedQuizArray.forEach(element => {
                     const viewItem = new ViewItem();
                     resultList.appendChild(viewItem.render());
                 })
 
-                renderSavedQuiz(savedQuizArray)
+                if (savedQuizArray.length === 0) {
+                    resultList.innerText = 'Đã có lỗi truy xuất. Có thể bạn chưa tạo Bộ sưu tập';
+                    // Count 
+                    document.querySelector('.count').innerText = 0;
+
+                } else {
+                    renderSavedQuiz(savedQuizArray)
+
+                }
 
 
             } else {
@@ -39,22 +48,32 @@ function renderSavedQuiz(idArray) {
     let resultItems = document.querySelectorAll('.search-results-item');
 
     idArray.forEach((element, index) => {
-        if (APIArray.includes(element)) {
+        console.log(element);
+        if (element.length < 8) {
             fetch('https://apiquizizz.herokuapp.com/quizzes')
                 .then(response => {
                     return response.json();
                 })
-                .then((data) => {
+                .then(async (data) => {
+                    let test = {};
+                    await db.collection("quizList").get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            // doc.data() is never undefined for query doc snapshots
+                            test[doc.id] = doc.data();
+                        });
+                    });
+                    console.log(test);
+                    data = test;
 
                     // Count 
                     document.querySelector('.count').innerText = resultItems.length;
 
                     // Render image 
-                    resultItems[index].firstElementChild.style.backgroundImage = `url('${data[element][0].image}')`;
+                    resultItems[index].firstElementChild.style.backgroundImage = `url('${data[element].image}')`;
                     // Render ten quiz 
-                    resultItems[index].querySelector('.content-type-title').innerText = data[element][0].questionTitle;
+                    resultItems[index].querySelector('.content-type-title').innerText = data[element].questionTitle;
                     // Render so cau hoi 
-                    resultItems[index].querySelector('.questions-length').innerHTML += data[element].length + ' questions';
+                    resultItems[index].querySelector('.questions-length').innerHTML += data[element].questions.length + ' questions';
                     // Render email 
                     resultItems[index].querySelector('.username').innerText = userObject.email;
                     // Render profile pic 
@@ -62,9 +81,10 @@ function renderSavedQuiz(idArray) {
 
                 })
         } else {
-            var docRef = db.collection("userCreatedQuiz").doc(userObject.email);
+            console.log(userObject.email);
+            var docRefQuiz = db.collection("userCreatedQuiz").doc(userObject.email);
 
-            docRef.get().then((doc) => {
+            docRefQuiz.get().then((doc) => {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
                     let data = doc.data();

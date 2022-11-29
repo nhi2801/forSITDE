@@ -17,6 +17,7 @@ function renderQuiz(quizId, promise) {
     console.log(window.location);
     return promise()
         .then(async (data) => {
+            console.log(data);
             await getQuizzes();
             if (Object.keys(data).includes('quiz1')) {
 
@@ -24,7 +25,20 @@ function renderQuiz(quizId, promise) {
                 quizData = data;
 
             } else {
-                quizData = data.data();
+                quizData = {};
+                data.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    if(doc.data()[quizId]) {
+                        console.log(doc.data().email);
+                        quizData[quizId] = doc.data()[quizId];
+                        quizData[quizId].questions = doc.data()[quizId];
+                        quizData[quizId].image = doc.data()[quizId][0].image;
+                        quizData[quizId].questionTitle = doc.data()[quizId][0].questionTitle
+                        quizData.displayName = doc.data().email;
+                    };
+                });
+                console.log(quizData);
+                console.log(quizData[quizId].questions);
                 document.querySelector('.username-text').innerText = quizData.displayName;
             }
 
@@ -123,14 +137,14 @@ function renderQuiz(quizId, promise) {
 
 // }
 async function getQuizzes() {
-  await db.collection("quizList").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        test[doc.id] = doc.data();
+    await db.collection("quizList").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            test[doc.id] = doc.data();
+        });
     });
-  });
-  console.log(test);
-  return test;
+    console.log(test);
+    return test;
 }
 
 let id = window.location.search.split('=').pop();
@@ -144,8 +158,16 @@ function promiseFetchAPI() {
 
 }
 
-let docRef = db.collection("userCreatedQuiz").doc(JSON.parse(localStorage.getItem('tempUserInfo')).email);
-function promiseGetFirebaseData() {
+let docRef = db.collection("userCreatedQuiz");
+async function promiseGetFirebaseData() {
+    let docRef = await db.collection("userCreatedQuiz");
+    console.log(JSON.parse(localStorage.getItem('tempUserInfo')).email);
+    // await docRef.get().then(data => {
+    //     data.forEach((doc) => {
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(doc.data());
+    //     });
+    // })
     return docRef.get();
 }
 
@@ -172,25 +194,3 @@ docRef.get().then((doc) => {
 });
 
 export { quizData, renderQuiz };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
