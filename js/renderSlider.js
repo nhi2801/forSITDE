@@ -15,7 +15,9 @@ async function getQuizzes() {
   await db.collection("quizList").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        test[doc.id] = doc.data();
+        if (doc.data().questions) {
+          test[doc.id] = doc.data();
+        };
     });
   });
   console.log(test);
@@ -100,7 +102,7 @@ async function name() {
     });
   })
   .catch((error) => {
-    console.log("loi");
+    console.log(error);
   });
 
 }
