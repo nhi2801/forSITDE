@@ -47,8 +47,7 @@ function renderSavedQuiz(idArray) {
     let APIArray = ['html', 'css', 'java', 'javascript', 'python', 'sql', 'javascriptnc', 'C', 'code', 'networkingbasic'];
     let resultItems = document.querySelectorAll('.search-results-item');
 
-    idArray.forEach((element, index) => {
-        console.log(element);
+    idArray.forEach(async (element, index) => {
         if (element.length < 8) {
             fetch('https://apiquizizz.herokuapp.com/quizzes')
                 .then(response => {
@@ -81,13 +80,23 @@ function renderSavedQuiz(idArray) {
 
                 })
         } else {
+            console.log(element);
             console.log(userObject.email);
+            let dataExist = {};
             var docRefQuiz = db.collection("userCreatedQuiz").doc(userObject.email);
+            let docQuizzes = await db.collection("userCreatedQuiz").get().then((doc) => {
+                doc.forEach((a) => {
+                    if (a.data()[element]) {
+                        dataExist = a.data();
+                    }
+                })
+            })
 
             docRefQuiz.get().then((doc) => {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
-                    let data = doc.data();
+                    console.log(dataExist);
+                    let data = dataExist;
 
                     // Count 
                     document.querySelector('.count').innerText = resultItems.length;
