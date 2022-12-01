@@ -4,12 +4,14 @@ import { quizData, renderQuiz } from "./createTest.js";
 function renderSuggestion() {
     const quizItemList = document.querySelectorAll('.quiz-item');
     const quizList = Object.keys(quizData);
+    console.log(quizData);
     console.log(quizList);
     quizItemList.forEach((element, index) => {
-        element.firstElementChild.style.backgroundImage = `url(${quizList.imageURL})`;
-        element.querySelector('.quiz-title').innerText = quizData[quizList].questions[index].questionTitle;
-        element.querySelector('.quiz-num-questions').innerText = quizData[quizList].questions[index].length + ' câu hỏi';
-        element.dataset.id = quizList[index];
+        console.log(quizData[quizList[index]]);
+        element.firstElementChild.style.backgroundImage = `url(${quizData[quizList[index]].imageURL})`;
+        element.querySelector('.quiz-title').innerText = quizData[quizList[index]].questionTitle;
+        element.querySelector('.quiz-num-questions').innerText = quizData[quizList[index]].questions.length + ' câu hỏi';
+        element.dataset.id = quizData[quizList[index]].quizId;
 
         element.addEventListener('click', (evt) => {
             evt.preventDefault();
