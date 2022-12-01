@@ -45,7 +45,7 @@ function renderQuiz(quizId, promise) {
             // Ten quiz va so luong cau hoi 
             quizNameText.innerText = quizData[quizId].questionTitle;
             questionCount.innerText = quizData[quizId].questions.length;
-            document.querySelector('.quiz-image-inner').firstElementChild.src = quizData[quizId].image;
+            document.querySelector('.quiz-image-inner').firstElementChild.src = quizData[quizId].imageURL;
 
             // Tao so cau hoi 
             for (let i = 0; i < quizData[quizId].questions.length; i++) {

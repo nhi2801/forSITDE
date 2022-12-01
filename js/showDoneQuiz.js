@@ -102,7 +102,7 @@ function renderSavedQuiz(idArray) {
                     document.querySelector('.count').innerText = resultItems.length;
 
                     // Render image 
-                    resultItems[index].firstElementChild.style.backgroundImage = `url('${data[element][0].image}')`;
+                    resultItems[index].firstElementChild.style.backgroundImage = `url('${data[element][0].imageURL}')`;
                     // Render ten quiz 
                     resultItems[index].querySelector('.content-type-title').innerText = data[element][0].questionTitle + `(code: ${element})`;
                     // Render so cau hoi 
