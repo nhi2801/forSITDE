@@ -6,7 +6,7 @@ function renderSuggestion() {
     const quizList = Object.keys(quizData);
     console.log(quizList);
     quizItemList.forEach((element, index) => {
-        element.firstElementChild.style.backgroundImage = `url(${quizData[quizList].questions[index].image})`;
+        element.firstElementChild.style.backgroundImage = `url(${quizData[quizList].questions[index].imageURL})`;
         element.querySelector('.quiz-title').innerText = quizData[quizList].questions[index].questionTitle;
         element.querySelector('.quiz-num-questions').innerText = quizData[quizList].questions[index].length + ' câu hỏi';
         element.dataset.id = quizList[index];
