@@ -68,7 +68,7 @@ function renderSavedQuiz(idArray) {
                     document.querySelector('.count').innerText = resultItems.length;
 
                     // Render image 
-                    resultItems[index].firstElementChild.style.backgroundImage = `url('${data[element].image}')`;
+                    resultItems[index].firstElementChild.style.backgroundImage = `url('${data[element].imageURL}')`;
                     // Render ten quiz 
                     resultItems[index].querySelector('.content-type-title').innerText = data[element].questionTitle;
                     // Render so cau hoi 
