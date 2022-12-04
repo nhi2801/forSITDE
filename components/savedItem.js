@@ -48,7 +48,7 @@ class ViewItem {
 
     this.$userImg = document.createElement("div");
     this.$userImg.classList.add("user-img");
-    this.$userImg.style.backgroundImage = `url(https://lh3.googleusercontent.com/a-/AOh14Gggzvqn-YiHEPtNfu6BPdWmAjxQQGthaXK0E1c6FQ=s96-c?w=90&amp;h=90)`;
+    this.$userImg.style.backgroundImage = `url(https://drive.google.com/file/d/1oOLlbjSP0w3xkHh91q3TfNUS1fUrlzAA/view?usp=sharing)`;
 
     this.$userData = document.createElement("div");
     this.$userData.classList.add("user-data");
