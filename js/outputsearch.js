@@ -6,25 +6,29 @@ const searchLength = valueSearch.length;
 totalTitle.innerHTML = `Kết quả (${searchLength})`;
 
 const renderSearch = (valueSearch) => {
+  console.log(valueSearch);
   const htmlString = valueSearch
     .map((value) => {
       console.log(value);
-      if (!value[0].search) {
-        value[0].search = "Custom";
+      if (!value.quizId) {
+        value.quizId = "Custom";
       };
+      if (!value.imageURL) {
+        value.imageURL = "https://truongcuaem.com/wp-content/uploads/2021/08/quiz-word-red-d-letters-to-illustrate-exam-evaluation-assessment-to-measure-your-knowledge-expertise-44060147.jpg";
+      }
       return `
-<li class="search-results-item" data-id="${value[0].search}">
+<li class="search-results-item" data-id="${value.quizId}">
   <div class="image"
-    style="background-image:url(${value[0].image});background-size: 70%;">
+    style="background-image:url(${value.imageURL});background-size: 70%;">
   </div>
   <div class="data">
-    <div class="content-type-title"> ${value[0].questionTitle} </div>
+    <div class="content-type-title"> ${value.questionTitle} </div>
     <div class="name">  </div>
     <div class="details">
-      <div class="questions-length"> ${value.length}Qs <i class="fas fa-list no-absolute"></i> 
+      <div class="questions-length"> ${value.questions.length}Qs <i class="fas fa-list no-absolute"></i> 
       </div>
       <div class="played"><i class="fas fa-play no-absolute"></i>
-      ${value[0].search} 
+      ${value.quizId} 
       </div>
     </div>
   </div>

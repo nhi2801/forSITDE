@@ -7,7 +7,8 @@ searchBar.addEventListener("submit", (e) => {
     .value.toLowerCase();
 
   const filtersearch = contentSearch.filter((value) => {
-    return value[0].questionTitle.toLowerCase().includes(valuesearch);
+    console.log(value);
+    return value.questionTitle.toLowerCase().includes(valuesearch);
   });
   console.log(filtersearch);
 
@@ -21,6 +22,7 @@ if (btnsearchMobile) {
       .querySelector('input[name="search-mobile"]')
       .value.toLowerCase();
     const filtersearch = contentSearch.filter((value) => {
+      console.log(value);
       return value[0].questionTitle.toLowerCase().includes(valuesearch);
     });
     localStorage.setItem("search", JSON.stringify(filtersearch));
@@ -39,8 +41,8 @@ db.collection("userCreatedQuiz").get().then((querySnapshot) => {
     quizzes.forEach((quiz) => {
       if (!(quiz === "email" || quiz === "displayName" || quiz === "profilePic")) {
         quizset[quiz][0].search = quiz;
-        console.log(quizset[quiz][0].search);
-        contentSearch.push(quizset[quiz]);
+        console.log(quizset[quiz]);
+        // contentSearch.push(quizset[quiz]);
         console.log(quizset[quiz][0]);
         // customQuizzes.push
       }
@@ -48,15 +50,32 @@ db.collection("userCreatedQuiz").get().then((querySnapshot) => {
   });
 });
 
-fetch("https://apiquizizz.herokuapp.com/quizzes")
-  .then((response) => {
+const test = {};
+
+async function getQuizzes() {
+  await db.collection("quizList").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          test[doc.id] = doc.data();
+      });
+  });
+  console.log(test);
+  return test;
+}
+
+fetch("https://jsonplaceholder.typicode.com/posts")
+  .then(async (response) => {
+    await getQuizzes();
+    console.log(test);
     return response.json();
   })
   .then((data) => {
+    data = test;
     Object.keys(data).forEach((element) => {
       // console.log(data[element]);
       contentSearch.push(data[element]);
     });
+    console.log(contentSearch);
   });
 const searchMobile = document.getElementById("search-mobile");
 const btnSearch = document.querySelector(".btn-search");

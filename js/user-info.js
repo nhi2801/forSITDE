@@ -8,6 +8,9 @@ console.log(userInfo);
 
 firebase.auth().onAuthStateChanged((user) => {
   console.log(user);
+  
+  const buttonCreate = document.getElementsByClassName('create-menu-wrapper')[0];
+  buttonCreate.hidden = true;
   if (user) {
     userInfo.innerHTML = `
     <div class="user-img">
@@ -44,8 +47,6 @@ firebase.auth().onAuthStateChanged((user) => {
       }
     });
 
-    const buttonCreate = document.getElementsByClassName('create-menu-wrapper')[0];
-    buttonCreate.hidden = true;
 
     if (window.location.pathname === "/quizPage.html") {
       console.log(window.location.pathname);

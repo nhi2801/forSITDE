@@ -49,7 +49,7 @@ function renderSavedQuiz(idArray) {
 
     idArray.forEach(async (element, index) => {
         if (element.length < 8) {
-            fetch('https://apiquizizz.herokuapp.com/quizzes')
+            fetch('https://jsonplaceholder.typicode.com/posts')
                 .then(response => {
                     return response.json();
                 })

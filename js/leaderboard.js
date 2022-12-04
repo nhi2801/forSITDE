@@ -13,17 +13,34 @@ function createATag(quizName, quizId) {
   return aTag;
 }
 
+let test = {};
+
+async function getQuizzes() {
+  await db.collection("quizList").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      if (doc.data().questions) {
+        test[doc.id] = doc.data();
+      };
+    });
+  });
+}
+
 function renderLeaderboard(setQuizId) {
-  fetch("https://apiquizizz.herokuapp.com/quizzes")
-    .then((response) => {
+  fetch("https://jsonplaceholder.typicode.com/posts")
+    .then(async (response) => {
+      await getQuizzes();
       return response.json();
     })
     .then((data) => {
+      console.log(test);
+      data = test;
+      console.log(data[setQuizId].questions.length);
       // Tao so dong` cho dropdown quiz name
       for (let index = 0; index < Object.keys(data).length; index++) {
         let quizId = Object.keys(data)[index];
         dropdownContent.appendChild(
-          createATag(data[quizId][0].questionTitle, quizId)
+          createATag(data[quizId].questionTitle, quizId)
         );
       }
 
@@ -43,10 +60,10 @@ function renderLeaderboard(setQuizId) {
       let board = [];
       let tableBody = document.getElementById("table-body");
 
-      quizTitle.innerText = data[setQuizId][0].questionTitle;
+      quizTitle.innerText = data[setQuizId].questionTitle;
 
       // Lay data tu firebase
-      db.collection(data[setQuizId][0].questionTitle)
+      db.collection(data[setQuizId].questionTitle)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -80,10 +97,10 @@ function renderLeaderboard(setQuizId) {
             // Score
             // board[index][1] : So diem ; data[setQuizId].length : So cau
             element.childNodes[2].innerText =
-              board[index][1] + " / " + data[setQuizId].length;
+              board[index][1] + " / " + data[setQuizId].questions.length;
             // Accuracy
             element.childNodes[3].firstChild.innerText =
-              (Number(board[index][1]) / Number(data[setQuizId].length)) * 100 +
+              (Number(board[index][1]) / Number(data[setQuizId].questions.length)) * 100 +
               "%";
             // Time
             element.childNodes[5].firstChild.innerText = board[index][2];

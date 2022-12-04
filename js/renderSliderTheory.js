@@ -34,7 +34,7 @@ async function name() {
     return list;
   });
 
-  await fetch("https://apiquizizz.herokuapp.com/quizzes")
+  await fetch("https://jsonplaceholder.typicode.com/posts")
   .then((response) => {
     return response.json();
   })
