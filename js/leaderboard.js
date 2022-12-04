@@ -35,7 +35,7 @@ function renderLeaderboard(setQuizId) {
     .then((data) => {
       console.log(test);
       data = test;
-      console.log(data[setQuizId].questions.length);
+//       console.log(data[setQuizId].questions.length);
       // Tao so dong` cho dropdown quiz name
       for (let index = 0; index < Object.keys(data).length; index++) {
         let quizId = Object.keys(data)[index];
