@@ -24,7 +24,7 @@ function afterText(submitForm) {
 
 reportBtn.addEventListener('click', async (evt) => {
     evt.preventDefault();
-    inputText('textarea', 'Report', 'Lỗi ở câu nào, lỗi đáp án....', afterText);
+    inputText('textarea', 'Report', 'Lỗi ở câu nào, lỗi đáp án....', "LOL", afterText);
 
 })
 
