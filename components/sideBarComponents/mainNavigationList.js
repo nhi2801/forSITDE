@@ -36,7 +36,7 @@ class NavigationList {
         this.$classes.id = 'leaderboard';
         this.$classes.innerHTML = `<i class="fas fa-university"></i><span role="link"
         tabindex="0">Bảng xếp hạng</span>`;
-        this.$classes.addEventListener('click', () => { location.href = './leaderboard.html?id=html' })
+        this.$classes.addEventListener('click', () => { location.href = './leaderboard.html?id=quiz1' })
 
         this.$divider = document.createElement('li');
         this.$divider.classList.add('divider');
@@ -45,7 +45,7 @@ class NavigationList {
         this.$theory.id = 'theory';
         this.$theory.innerHTML = `<i class="fas fa-person-booth"></i><span role="link" tabindex="0"
         aria-hidden="false">Tài liệu</span>`;
-        this.$theory.addEventListener('click', () => { location.href = './listTheory.html?id=html' })
+        this.$theory.addEventListener('click', () => { location.href = './listTheory.html?id=quiz1' })
 
         this.$about = document.createElement('li');
         this.$about.id = 'about';
