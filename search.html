@@ -59,7 +59,17 @@
                     <div class="bottom-header-inner">
                         <div class="title"></div>
                         <div class="order-container">
-                            <span class="text">Sắp xếp</span>
+                            <!-- <span class="text">Phân loại</span> -->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <label class="input-group-text" for="inputGroupSelect01">Phân loại</label>
+                                <select class="custom-select" id="inputGroupSelect01">
+                                  <option selected value="1">Tất cả</option>
+                                  <option value="2">Cơ bản</option>
+                                  <option value="3">Nâng cao</option>
+                                </select>
+                                </div>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -158,6 +168,7 @@
 <script src="./js/loading.js"></script>
 
 <script type="module" src="./js/outputsearch.js"></script>
+<script type="module" src="./js/filter.js"></script>
 <script type="module" src="./js/search.js"></script>
 <script type="module" src="./js/entercode.js"></script>
 
