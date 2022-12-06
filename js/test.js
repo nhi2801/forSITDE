@@ -19,28 +19,28 @@ function renderQuiz(quizId, promise) {
         .then(async (data) => {
             console.log(data);
             await getQuizzes();
-            if (Object.keys(data).includes('quiz1')) {
+            // if (Object.keys(data).includes('quiz1')) {
 
                 // luu data vao 1 array 
                 quizData = data;
 
-            } else {
-                quizData = {};
-                data.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    if(doc.data()[quizId]) {
-                        console.log(doc.data().email);
-                        quizData[quizId] = doc.data()[quizId];
-                        quizData[quizId].questions = doc.data()[quizId];
-                        quizData[quizId].image = doc.data()[quizId][0].imageURL;
-                        quizData[quizId].questionTitle = doc.data()[quizId][0].questionTitle
-                        quizData.displayName = doc.data().email;
-                    };
-                });
-                console.log(quizData);
-                console.log(quizData[quizId].questions);
-                document.querySelector('.username-text').innerText = quizData.displayName;
-            }
+            // } else {
+            //     quizData = {};
+            //     data.forEach((doc) => {
+            //         // doc.data() is never undefined for query doc snapshots
+            //         if(doc.data()[quizId]) {
+            //             console.log(doc.data().email);
+            //             quizData[quizId] = doc.data()[quizId];
+            //             quizData[quizId].questions = doc.data()[quizId];
+            //             quizData[quizId].image = doc.data()[quizId][0].imageURL;
+            //             quizData[quizId].questionTitle = doc.data()[quizId][0].questionTitle
+            //             quizData.displayName = doc.data().email;
+            // //         };
+            //     });
+            //     console.log(quizData);
+            //     console.log(quizData[quizId].questions);
+            //     document.querySelector('.username-text').innerText = quizData.displayName;
+            // }
 
             // Ten quiz va so luong cau hoi 
             quizNameText.innerText = quizData[quizId].questionTitle;
@@ -172,13 +172,13 @@ async function promiseGetFirebaseData() {
 }
 
 
-if (APIArray.includes(id)) {
+// if (APIArray.includes(id)) {
     console.log('g');
     renderQuiz(id, promiseFetchAPI);
-} else {
-    console.log('g');
-    renderQuiz(id, promiseGetFirebaseData);
-}
+// } else {
+//     console.log('g');
+//     renderQuiz(id, promiseGetFirebaseData);
+// }
 
 
 
